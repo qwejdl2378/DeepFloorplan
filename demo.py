@@ -83,7 +83,9 @@ def main(args):
 		plt.imshow(im)
 		plt.subplot(122)
 		plt.imshow(floorplan_rgb/255.)
-		plt.show()
+		# plt.show()
+		plt.savefig('example_plot.svg')
+
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()

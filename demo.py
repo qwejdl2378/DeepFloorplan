@@ -5,7 +5,10 @@ import tensorflow as tf
 
 from PIL import Image
 from scipy.misc import imread, imsave, imresize
-from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 

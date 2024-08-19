@@ -44,8 +44,10 @@ def ind2rgb(ind_im, color_map=floorplan_map):
 	return rgb_im
 
 def main(args):
-	# load input
-	im = tf.image.decode_jpeg(tf.io.read_file(args.im_path), channels=3)
+	batch('./demo', './result')
+
+def process_image(input_path, output_path):
+	im = tf.image.decode_jpeg(tf.io.read_file(input_path), channels=3)
 	# im = tf.image.resize(im, [512, 512])
 	im = imresize(im, (512,512,3)) / 255.
 
@@ -84,8 +86,17 @@ def main(args):
 		plt.subplot(122)
 		plt.imshow(floorplan_rgb/255.)
 		# plt.show()
-		plt.savefig('example_plot.svg')
+		plt.savefig(output_path)
 
+def batch(input_directory, output_directory): 
+	if not os.path.exists(output_directory):
+		os.makedirs(output_directory)
+	for filename in os.listdir(input_directory):
+			input_path = os.path.join(input_directory, filename)
+			output_filename = os.path.splitext(filename)[0] + '.svg'
+			output_path = os.path.join(output_directory, output_filename)
+			process_image(input_path, output_path)
+			print(f'Processed {input_path} and saved as {output_path}')
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()

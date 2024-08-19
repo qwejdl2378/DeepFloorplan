@@ -96,7 +96,7 @@ def batch(input_directory, output_directory):
 			output_filename = os.path.splitext(filename)[0] + '.svg'
 			output_path = os.path.join(output_directory, output_filename)
 			process_image(input_path, output_path)
-			print(f'Processed {input_path} and saved as {output_path}')
+			print('Processed %s and saved as %s' % (input_path, output_path))
 
 if __name__ == '__main__':
 	FLAGS, unparsed = parser.parse_known_args()
